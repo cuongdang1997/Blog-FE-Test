@@ -142,7 +142,7 @@
         <!-- post article-->
       </div>
       <div class="col-md-3 mb40">
-        <div class="mb40">
+        <!-- <div class="mb40">
           <form>
             <div class="input-group">
               <input
@@ -156,7 +156,7 @@
               </button>
             </div>
           </form>
-        </div>
+        </div> -->
         <!--/col-->
         <div class="mb40">
           <h4 class="sidebar-title">Categories</h4>

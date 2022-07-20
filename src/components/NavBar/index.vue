@@ -1,7 +1,11 @@
 <template>
   <b-navbar class="justify-content-between px-5" toggleable="lg" type="dark" variant="info">
     <div class="navBar-left">
-      <b-navbar-brand href="/">Logo</b-navbar-brand>
+      <router-link to="/">
+        <b-navbar-brand>
+          Logo
+        </b-navbar-brand>
+      </router-link>
     </div>
     <div class="navBar-right">
       <b-collapse id="nav-collapse" is-nav>

@@ -36,6 +36,30 @@ export const asyncRoutes = [
             icon: 'guide'
         }
     },
+    {
+        name: 'post',
+        path: 'post',
+        component: () => import('@/pages/index/children/post'),
+        meta: {
+          icon: 'documentation'
+        }
+    },
+    {
+      name: 'post-update',
+      path: 'post/update',
+      component: () => import('@/pages/index/children/post/update'),
+      meta: {
+        hidden: true
+      }
+    },
+    {
+        name: 'post-update',
+        path: 'post/update/:id',
+        component: () => import('@/pages/index/children/post/update'),
+        meta: {
+          hidden: true
+        }
+    },
     // {
     //     name: 'permission',
     //     path: 'permission',
@@ -93,6 +117,7 @@ export const asyncRoutes = [
 
 export const localRoutes = [
     {
+        name: 'home',
         path: '',
         component: () => import('@/pages/homepage')
         // redirect: '/login'
@@ -116,7 +141,7 @@ export const localRoutes = [
 ]
 
 const createRouter = () => new Router({
-    // mode: 'history',
+    mode: 'history',
     routes: localRoutes,
     scrollBehavior: () => ({ y: 0 })
 })

@@ -27,6 +27,6 @@ export default {
 <style lang='stylus'>
 #app {
     position: relative;
-    height: 100%;
+    background-color: #fff;
 }
 </style>

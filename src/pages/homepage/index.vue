@@ -1,15 +1,17 @@
 <template>
-  <b-container>
+  <b-container class="home-page">
     <app-navbar />
     <!-- filter -->
     <b-row class="my-3">
       <b-col>
-        <b-input-group class="mt-3">
-          <template #append>
-            <b-input-group-text><b-icon icon="search"></b-icon></b-input-group-text>
-          </template>
-          <b-form-input v-model="filter.keyword" placeholder="Search"></b-form-input>
-        </b-input-group>
+        <b-form-group label="Search:" label-for="input-1">
+          <b-input-group >
+            <template #append>
+              <b-input-group-text><b-icon icon="search"></b-icon></b-input-group-text>
+            </template>
+            <b-form-input id="input-1" v-model="filter.keyword" placeholder="Keyword"></b-form-input>
+          </b-input-group>
+        </b-form-group>
       </b-col>
       <b-col cols="12" md="auto">
         <b-form-group id="input-group-2" label="Sort by:" label-for="input-2">
@@ -24,7 +26,7 @@
     </b-row>
     <div>
       <ul class="list-unstyled">
-        <b-media class='post' v-for="(post, index) in data.data.items" :key="index" tag="li">
+        <b-media class='post mb-3' v-for="(post, index) in data.data.items" :key="index" tag="li">
             <template #aside>
               <router-link :to="'/post/' + post.id">
                 <b-img-lazy blank blank-color="#abc" width="64" :alt="post.title" :src="post.image.url"></b-img-lazy>
@@ -37,14 +39,16 @@
         </b-media>
       </ul>
     </div>
-    <b-pagination
-      v-model="filter.page"
-      :total-rows="data.pagination.count"
-      :per-page="filter.offset"
-      aria-controls="my-table"
-      @change="pageChanged"
-      :hide-goto-end-buttons="data.pagination.count <= filter.offset"
-    ></b-pagination>
+    <div class="d-flex justify-content-center">
+      <b-pagination
+        v-model="filter.page"
+        :total-rows="data.pagination.count"
+        :per-page="filter.offset"
+        aria-controls="my-table"
+        @change="pageChanged"
+        :hide-goto-end-buttons="data.pagination.count <= filter.offset"
+      ></b-pagination>
+    </div>
   </b-container>
 </template>
 <script>
@@ -97,7 +101,6 @@ export default {
   },
   methods: {
     pageChanged(page) {
-      console.log('🚀 ~ file: index.vue ~ line 126 ~ pageChanged ~ page', page)
       this.filter.page = page
     },
     fetchData(params) {

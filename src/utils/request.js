@@ -20,13 +20,11 @@ instance.interceptors.request.use(config => {
 // response
 instance.interceptors.response.use(response => {
     const res = response.data
-    // 自定义报错规则
     if (res && res.errorMessage) {
         return Promise.reject(res.errorMessage)
     }
     return Promise.resolve(res)
 }, error => {
-    // 请求直接报错
     Message({
         message: error.message,
         type: 'error',
@@ -36,10 +34,10 @@ instance.interceptors.response.use(response => {
 })
 
 /**
- * @param   {String}    url     请求链接
- * @param   {String}    type    http方法
- * @param   {Object}    data    数据
- * @param   {Boolean}   isForm  是否表单格式
+ * @param   {String}    url
+ * @param   {String}    type
+ * @param   {Object}    data
+ * @param   {Boolean}   isForm
  * @returns {Promise}
  */
 export const request = async (url = '', type = 'GET', data = {}, isForm = false) => {
