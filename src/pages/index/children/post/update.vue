@@ -44,7 +44,7 @@
           @change="onFileChange"
           accept="image/*">
       </div>
-      <button type="submit" class="btn btn-primary my-1"><b-spinner small v-show="isLoading" variant="primary" label="Spinning"></b-spinner> {{ postId ? 'Update' : 'Add'}}</button>
+      <button type="submit" class="btn btn-primary my-1"><b-spinner small v-show="loading" variant="primary" label="Spinning"></b-spinner> {{ postId ? 'Update' : 'Add'}}</button>
     </form>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
   name: 'post-update-dashboard',
   data() {
     return {
-      isLoading: false,
+      loading: false,
       thumbnail_id: null,
       previewImageUrl: '',
       form: {
@@ -92,7 +92,7 @@ export default {
         if (this.thumbnail_id) {
           _params['blog[image]'] = this.thumbnail_id
         }
-        this.isLoading = true
+        this.loading = true
         createOrUpdate(_params).then(res => {
           this.$router.push('/index/post')
           const mess = this.postId ? 'Post updated successfully!' : 'Post created successfully!'
@@ -101,7 +101,7 @@ export default {
           const mess = this.postId ? 'Post update failed, please try again!' : 'Post create failed, please try again!'
           this.$message.error(mess)
         }).finally(() => {
-          this.isLoading = false
+          this.loading = false
         })
       })
     },

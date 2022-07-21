@@ -9,6 +9,10 @@
   object-fit: cover;
   object-position: center;
 }
+.home-page .post .media-body h5 {
+  color: #484848;
+  font-weight: bold;
+}
 #app .invalid-feedback {
   display: block;
 }

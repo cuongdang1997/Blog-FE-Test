@@ -26,17 +26,24 @@
     </b-row>
     <div>
       <ul class="list-unstyled">
-        <b-media class='post mb-3' v-for="(post, index) in data.data.items" :key="index" tag="li">
-            <template #aside>
-              <router-link :to="'/post/' + post.id">
-                <b-img-lazy blank blank-color="#abc" width="64" :alt="post.title" :src="post.image.url"></b-img-lazy>
-              </router-link>
-            </template>
-            <router-link :to="'/post/' + post.id">
-              <h5 class="mt-0 mb-1">{{post.title}}</h5>
-            </router-link>
-            <p class="mb-0" v-html="post.content" />
-        </b-media>
+        <b-skeleton-wrapper :loading="loading">
+          <template #loading>
+            <b-card class="mb-3" v-for="i in 10" :key="i" >
+              <b-skeleton width="85%"></b-skeleton>
+              <b-skeleton width="55%"></b-skeleton>
+              <b-skeleton width="70%"></b-skeleton>
+            </b-card>
+          </template>
+          <div v-if="data.data.items && data.data.items.length">
+            <post v-for="(post, index) in data.data.items" :key="index" :post="post" />
+          </div>
+          <b-card class="mb-3" v-else>
+            <b-card-body>
+              <b-alert show variant="info">No posts found</b-alert>
+              Please try another keyword or sort by another option.
+            </b-card-body>
+          </b-card>
+        </b-skeleton-wrapper>
       </ul>
     </div>
     <div class="d-flex justify-content-center">
@@ -46,7 +53,7 @@
         :per-page="filter.offset"
         aria-controls="my-table"
         @change="pageChanged"
-        :hide-goto-end-buttons="data.pagination.count <= filter.offset"
+        v-show="data.pagination.count > filter.offset"
       ></b-pagination>
     </div>
   </b-container>
@@ -55,11 +62,13 @@
 import _ from 'lodash'
 import { getList } from '@/api/post'
 import NavBar from '@/components/NavBar'
+import Post from '@/components/Blog/post'
 
 export default {
   name: 'homepage',
   data() {
     return {
+      loading: false,
       data: {
         data: {
           items: []
@@ -97,15 +106,19 @@ export default {
     }
   },
   components: {
-    'app-navbar': NavBar
+    'app-navbar': NavBar,
+    post: Post
   },
   methods: {
     pageChanged(page) {
       this.filter.page = page
     },
     fetchData(params) {
+      this.loading = true
       getList(params).then(res => {
         this.data = res
+      }).finally(() => {
+        this.loading = false
       })
     },
     handleFilter: _.debounce(function(filter) {
