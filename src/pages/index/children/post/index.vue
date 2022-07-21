@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex justify-content-end">
-      <router-link class="btn btn-primary mb-3" :to="'/index/post/update'"><b-icon icon="plus"></b-icon> Add post</router-link>
+      <router-link class="btn btn-primary mb-3" :to="'/index/post/create'"><b-icon icon="plus"></b-icon> Add post</router-link>
     </div>
     <b-table striped hover :items="data.data.items" :fields="fields">
       <template #cell(image)="row">
@@ -17,12 +17,12 @@
       </template>
 
       <template #cell(actions)="row">
-        <router-link :to="`/index/post/update/${row.item.id}`" class="mr-3 btn btn-warning sm">
+        <router-link :to="`/index/post/update/${row.item.id}`" class="mr-3 btn btn-warning">
           <b-icon icon="pencil"></b-icon> Edit
         </router-link>
-        <b-button size="sm" @click="row.toggleDetails" class="btn btn-danger">
+        <!-- <b-button size="sm" @click="row.toggleDetails" class="btn btn-danger">
           <b-icon icon="trash"></b-icon> Delete
-        </b-button>
+        </b-button> -->
       </template>
     </b-table>
     <div class="d-flex justify-content-end">

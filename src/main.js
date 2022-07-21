@@ -19,6 +19,7 @@ import '@/utils/permission'
 import '@/utils/errorLog'
 import '@/utils/cache'
 import i18n from '@/language'
+import VeeValidate from 'vee-validate'
 
 // import '@/mock'
 
@@ -36,6 +37,12 @@ Vue.use(vueSticky)
 Vue.use(vueBacktop)
 Vue.use(vueNumTo)
 Vue.use(vueClipboard)
+
+Vue.use(VeeValidate, {
+  inject: true,
+  fieldsBagName: 'veeFields',
+  errorBagName: 'veeErrors'
+})
 
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue)

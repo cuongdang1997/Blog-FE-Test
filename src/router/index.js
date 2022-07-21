@@ -45,8 +45,8 @@ export const asyncRoutes = [
         }
     },
     {
-      name: 'post-update',
-      path: 'post/update',
+      name: 'post-create',
+      path: 'post/create',
       component: () => import('@/pages/index/children/post/update'),
       meta: {
         hidden: true
