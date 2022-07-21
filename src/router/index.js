@@ -123,7 +123,7 @@ export const localRoutes = [
         // redirect: '/login'
     },
     {
-        path: '/post/:id',
+        path: '/post-detail/:id',
         component: () => import('@/pages/post-detail')
     },
     {

@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
                     })
                 }).catch(err => {
                     console.log(err)
-                    if (publicpermission.includes(to.path)) {
+                    if (publicpermission.includes(to.path) || to.path.includes('/post-detail')) {
                       next()
                     } else {
                       window.alert('You cannot access this page please login!')
@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
             }
         }
     } else {
-        if (publicpermission.includes(to.path)) {
+        if (publicpermission.includes(to.path) || to.path.includes('/post-detail')) {
             next()
         } else {
             next({ path: '/login', query: { redirect: to.fullPath } })
