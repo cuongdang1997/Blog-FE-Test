@@ -21,7 +21,7 @@ export default {
         },
         language: {
             type: String,
-            default: 'zh_CN'
+            default: 'en'
         }
     },
     data() {

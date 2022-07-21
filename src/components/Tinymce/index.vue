@@ -52,7 +52,7 @@ export default {
     methods: {
         initTinymce() {
             window.tinymce.init({
-                language: 'zh_CN',
+                language: 'en',
                 selector: `#${this.tinymceId}`,
                 height: this.height,
                 plugins: ['advlist anchor autolink autosave code codesample directionality emoticons fullscreen hr image imagetools insertdatetime link lists media nonbreaking noneditable pagebreak paste preview print save searchreplace spellchecker tabfocus table template textpattern visualblocks visualchars wordcount'],

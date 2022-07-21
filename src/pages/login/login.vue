@@ -18,19 +18,14 @@
                             <el-input class="submit" type="submit" :value="$t('login.submit')" />
                         </el-form-item>
                     </el-form>
-                    <div class="languageSelect-container">
-                        <language-select class="languageSelect ishover" />
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import LanguageSelect from '@/layout/NavBar/LanguageSelect'
 export default {
     name: 'login',
-    components: { LanguageSelect },
     data() {
         return {
             form: {

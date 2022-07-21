@@ -9,7 +9,7 @@ import zhLocale from './zh.js'
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-    locale: cache.getCookie('language') || 'zh',
+    locale: cache.getCookie('language') || 'en',
     messages: {
         zh: {
             ...zhLocale,
