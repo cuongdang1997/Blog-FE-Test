@@ -5,39 +5,39 @@ import cache from '@/utils/cache'
 const publicpermission = ['/', '/login', '/page401', '/page404', '/page500']
 
 router.beforeEach((to, from, next) => {
-    if (!publicpermission.includes(to.path)) {
-      if (cache.getToken()) {
-          if (to.path === '/login') {
-              next('/index')
-              // next()
-          } else {
-              let userInfo = store.state.login.user
-              if (userInfo) {
-                  assessPermission(userInfo.roles, to.meta.roles, next)
-              } else {
-                  store.dispatch('login/getUserData').then(res => {
-                      store.dispatch('routes/generateRoutes').then(addRoutes => {
-                          router.addRoutes(addRoutes)
-                          next({ ...to, replace: true })
-                      })
-                  }).catch(err => {
-                      console.log(err)
+    if (cache.getToken()) {
+        if (to.path === '/login') {
+            next('/index')
+            // next()
+        } else {
+            let userInfo = store.state.login.user
+            if (userInfo) {
+                assessPermission(userInfo.roles, to.meta.roles, next)
+            } else {
+                store.dispatch('login/getUserData').then(res => {
+                    store.dispatch('routes/generateRoutes').then(addRoutes => {
+                        router.addRoutes(addRoutes)
+                        next({ ...to, replace: true })
+                    })
+                }).catch(err => {
+                    console.log(err)
+                    if (publicpermission.includes(to.path)) {
+                      next()
+                    } else {
                       window.alert('You cannot access this page please login!')
                       store.dispatch('login/logout').then(() => {
-                          next({ path: '/login', query: { redirect: to.fullPath } })
+                        next({ path: '/login', query: { redirect: to.fullPath } })
                       })
-                  })
-              }
-          }
-      } else {
-          if (to.path === '/login') {
-              next()
-          } else {
-              next({ path: '/login', query: { redirect: to.fullPath } })
-          }
-      }
+                    }
+                })
+            }
+        }
     } else {
-      next()
+        if (publicpermission.includes(to.path)) {
+            next()
+        } else {
+            next({ path: '/login', query: { redirect: to.fullPath } })
+        }
     }
 })
 

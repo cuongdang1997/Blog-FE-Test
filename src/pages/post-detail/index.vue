@@ -1,5 +1,5 @@
 <template>
-  <div class="container pb50">
+  <b-container fluid="sm" class="pb50">
     <app-navbar />
     <div class="row mt-3">
       <b-skeleton-wrapper class="col-md-9 mb40" :loading="loading">
@@ -238,7 +238,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </b-container>
 </template>
 <script>
 import { getDetail } from '@/api/post'

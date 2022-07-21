@@ -4,6 +4,7 @@ export default {
         dashboard: 'Dashboard',
         documents: 'Documents',
         guide: 'Guide',
+        post: 'Post',
         permission: 'Permission',
         icons: 'Icons',
         components: 'Components',

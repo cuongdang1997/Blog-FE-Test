@@ -1,5 +1,5 @@
 <template>
-  <b-container class="home-page">
+  <b-container fluid="sm" class="home-page">
     <app-navbar />
     <!-- filter -->
     <b-row class="my-3">

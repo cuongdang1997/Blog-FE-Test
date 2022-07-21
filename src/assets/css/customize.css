@@ -17,6 +17,10 @@
   display: block;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 /*
 Blog post entries
 */

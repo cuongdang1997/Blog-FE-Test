@@ -2,12 +2,15 @@
     <el-dropdown class="userSelect" placement="bottom" trigger="click">
         <div class="userSelect-container">
             <img src="~@/assets/img/logo.png">
-            <span>{{user.nickname}}</span>
+            <span>{{user.name}}</span>
         </div>
         <el-dropdown-menu slot="dropdown">
             <el-dropdown-item :disabled="true">{{version}}</el-dropdown-item>
             <el-dropdown-item divided @click.native="infoVisible = true">{{$t('header.userInfo')}}</el-dropdown-item>
             <el-dropdown-item @click.native="passwordVisible = true">{{$t('header.password')}}</el-dropdown-item>
+            <el-dropdown-item>
+              <router-link to="/" class="text-dark">Home</router-link>
+            </el-dropdown-item>
             <el-dropdown-item @click.native="handleLogout">{{$t('header.logout')}}</el-dropdown-item>
         </el-dropdown-menu>
         <!-- dialog -->
@@ -40,14 +43,12 @@ export default {
             this.$store.dispatch('login/logout')
         },
         handleChangeUserInfo(form) {
-            // 假修改
             const user = { ...this.user, ...form }
             this.$store.commit('login/SET_USER', user)
             this.infoVisible = false
             this.$message.success('success')
         },
         handleChangeUserPassword(form) {
-            // 假修改
             this.passwordVisible = false
             this.$message.success('success')
         }
