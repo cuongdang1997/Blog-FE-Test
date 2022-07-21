@@ -5,7 +5,7 @@
             <span>{{user.name}}</span>
         </div>
         <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item :disabled="true">{{version}}</el-dropdown-item>
+            <!-- <el-dropdown-item :disabled="true">{{version}}</el-dropdown-item> -->
             <el-dropdown-item divided @click.native="infoVisible = true">{{$t('header.userInfo')}}</el-dropdown-item>
             <el-dropdown-item @click.native="passwordVisible = true">{{$t('header.password')}}</el-dropdown-item>
             <el-dropdown-item>
@@ -33,10 +33,10 @@ export default {
     computed: {
         ...mapState('login', {
             user: state => state.user
-        }),
-        version() {
-            return 'v' + require('../../../../package.json').version
-        }
+        })
+        // version() {
+        //     return 'v' + require('../../../../package.json').version
+        // }
     },
     methods: {
         handleLogout(val) {

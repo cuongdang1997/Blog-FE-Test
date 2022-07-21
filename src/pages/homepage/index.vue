@@ -94,7 +94,7 @@ export default {
         { value: null, text: 'Please select an option' },
         { value: 'id', text: 'ID' },
         { value: 'title', text: 'Title' },
-        { value: 'content', text: 'Contente' },
+        { value: 'content', text: 'Content' },
         { value: 'created_at', text: 'Created at' },
         { value: 'updated_at', text: 'Updated at' }
       ],
